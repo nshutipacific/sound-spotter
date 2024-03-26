@@ -104,4 +104,17 @@
     </div>
 </template>
 <script>
+export default {
+    data() {
+        return {
+            albums: []
+        }
+    },
+    mounted() {
+        axios.get('/api/albums')
+            .then(response => {
+                this.albums = response.data
+            })
+    }
+}
 </script>
