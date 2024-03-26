@@ -39,7 +39,9 @@
                         placeholder="Search artists, albums">
                 </div>
                 <div>
-                    <a  href="auth/google" class="bg-blue-500 px-4 py-1 rounded-lg text-white font-bold">Login</a>
+                    <a href="auth/google" >
+                        <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" alt="">
+                    </a>
                 </div>
             </div>
             <!-- Featured albums-->
@@ -95,7 +97,7 @@
                         <div class="mt-2 text-gray-300 font-bold"> Album Name </div>
                         <div> Artist Name </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

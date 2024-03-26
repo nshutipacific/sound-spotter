@@ -10,3 +10,10 @@
     <div id="app"></div>
 </body>
 </html>
+@auth
+    <script>
+        window.location.href = '/dashboard';
+    </script>
+@else
+    // Stay on this page
+@endauth
