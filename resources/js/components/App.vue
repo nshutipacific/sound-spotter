@@ -39,7 +39,7 @@
                         placeholder="Search artists, albums">
                 </div>
                 <div>
-                    <button class="bg-blue-500 px-4 py-1 rounded-lg text-white font-bold">Login</button>
+                    <a  href="auth/google" class="bg-blue-500 px-4 py-1 rounded-lg text-white font-bold">Login</a>
                 </div>
             </div>
             <!-- Featured albums-->
