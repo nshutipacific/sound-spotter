@@ -52,52 +52,20 @@
                 </div>
                 <!--Albums-->
                 <div class="w-full flex gap-4 overflow-x-auto pb-4">
-                    <div class="min-w-32 text-xs flex flex-wrap items-center justify-center">
+                    <div v-if="!albums || albums.length == 0" class="min-w-32 text-xs flex-wrap items-center justify-center">
                         <div>
-                            <img class="h-32 rounded-md"
-                                src="https://i.ibb.co/ZJggfrw/giorgio-trovato-Pdt-Apuz-R-IQ-unsplash.jpg"
-                                alt="giorgio-trovato-Pdt-Apuz-R-IQ-unsplash">
+                            <div class="h-32 rounded-md bg-gray-600 p-4"> No Albums Found<br/> at the Moment</div>
                         </div>
-                        <div class="mt-2 text-gray-300 font-bold"> Album Name </div>
-                        <div> Artist Name </div>
+                        <div class="mt-2 text-gray-300 font-bold"> Please refresh </div>
+                        <div>Check Connection </div>
                     </div>
-                    <div class="min-w-32 text-xs flex flex-wrap items-center justify-center">
+                    <div v-for="(album, index) in albums" :key="index" class="min-w-32 text-xs  flex-wrap items-center justify-center">
                         <div>
-                            <img class="h-32 rounded-md"
-                                src="https://i.ibb.co/ZJggfrw/giorgio-trovato-Pdt-Apuz-R-IQ-unsplash.jpg"
-                                alt="giorgio-trovato-Pdt-Apuz-R-IQ-unsplash">
+                            <img class="h-32 rounded-md" :src="album.image[2]['#text']" :alt="album.name">
                         </div>
-                        <div class="mt-2 text-gray-300 font-bold"> Album Name </div>
-                        <div> Artist Name </div>
+                        <div class="mt-2 text-gray-300 font-bold whitespace-nowrap overflow-hidden overflow-ellipsis"> {{ album.name }}</div>
+                        <div>{{ album.artist}}</div>
                     </div>
-                    <div class="min-w-32 text-xs flex flex-wrap items-center justify-center">
-                        <div>
-                            <img class="h-32 rounded-md"
-                                src="https://i.ibb.co/ZJggfrw/giorgio-trovato-Pdt-Apuz-R-IQ-unsplash.jpg"
-                                alt="giorgio-trovato-Pdt-Apuz-R-IQ-unsplash">
-                        </div>
-                        <div class="mt-2 text-gray-300 font-bold"> Album Name </div>
-                        <div> Artist Name </div>
-                    </div>
-                    <div class="min-w-32 text-xs flex flex-wrap items-center justify-center">
-                        <div>
-                            <img class="h-32 rounded-md"
-                                src="https://i.ibb.co/ZJggfrw/giorgio-trovato-Pdt-Apuz-R-IQ-unsplash.jpg"
-                                alt="giorgio-trovato-Pdt-Apuz-R-IQ-unsplash">
-                        </div>
-                        <div class="mt-2 text-gray-300 font-bold"> Album Name </div>
-                        <div> Artist Name </div>
-                    </div>
-                    <div class="min-w-32 text-xs flex flex-wrap items-center justify-center">
-                        <div>
-                            <img class="h-32 rounded-md"
-                                src="https://i.ibb.co/ZJggfrw/giorgio-trovato-Pdt-Apuz-R-IQ-unsplash.jpg"
-                                alt="giorgio-trovato-Pdt-Apuz-R-IQ-unsplash">
-                        </div>
-                        <div class="mt-2 text-gray-300 font-bold"> Album Name </div>
-                        <div> Artist Name </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -113,7 +81,8 @@ export default {
     mounted() {
         axios.get('/api/albums')
             .then(response => {
-                this.albums = response.data
+                this.albums = response.data.results.albummatches.album
+                console.log(response.data.results.albummatches.album)
             })
     }
 }

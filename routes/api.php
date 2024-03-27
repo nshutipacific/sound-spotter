@@ -9,7 +9,7 @@ Route::get('/albums', function () {
     // Make the HTTP request to the API
     $response = Http::get(env('LAST_FM_API_URL'), [
         'method' => 'album.search',
-        'album' => 'album',
+        'album' => 'Album',
         'api_key' => env('LAST_FM_API_KEY'),
         'format' => 'json',
     ]);
