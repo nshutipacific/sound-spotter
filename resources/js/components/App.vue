@@ -72,7 +72,13 @@
     </div>
 </template>
 <script>
+import Dashboard from './dashboard/Dashboard.vue';
+
 export default {
+    name:'App',
+    components: {
+        Dashboard
+    },
     data() {
         return {
             albums: []

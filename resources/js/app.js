@@ -1,6 +1,11 @@
 import './bootstrap';
 import { createApp } from "vue";
-
 import App from "./components/App.vue";
+import Dashboard from './components/dashboard/Dashboard.vue';
 
-createApp(App).mount("#app");
+const app = createApp({});
+app.component('app', App);
+app.component('dashboard', Dashboard);
+app.mount("#app");
+
+
