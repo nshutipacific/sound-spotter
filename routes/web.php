@@ -22,12 +22,12 @@ Route::get('/', function () {
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('/login/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-//create a route that points to dashbord/index.blade.php
+
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name('dashboard');
 
-//Create a logout route
+
 Route::get('/logout', function () {
     App::make('auth')->logout();
     return redirect('/');

@@ -10,7 +10,7 @@
                 </div>
                 <div class="mt-2 font-bold text-white">Sound Spotter</div>
             </div>
-            <navigation />
+            <navigation :isUserLoggedIn="true" />
         </div>
         <div class="bg-gray-900 m-2 rounded p-2">
             Contents
