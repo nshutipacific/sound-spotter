@@ -2,7 +2,7 @@
     <!--Navigation-->
     <div class="mt-8 text-sm ml-2">
         <div class="mt-8">
-            <a href="/artstis" class=" p-2 block text-white border-b hover:bg-gray-900 cursor-pointer">
+            <a href="/artists" class=" p-2 block text-white border-b hover:bg-gray-900 cursor-pointer">
                 <i class="fa fa-music mr-3"></i>
                 Artists
             </a>
@@ -27,7 +27,7 @@
                 </a>
             </div>
         </div>
-        <div v-if="hasTheUserLoggedIn" class="mt-8 mb-8">
+        <div class="mt-8 mb-8">
             <div class="p-2">
                 <a href="/logout" class="bg-red-500 px-4 py-2 rounded font-bold text-white">
                     <i class="fa-solid fa-right-from-bracket mr-3 -scale-x-100"></i>
@@ -38,18 +38,5 @@
     </div>
 </template>
 <script>
-export default {
-    name: 'Navigation',
-    props: {
-        isUserLoggedIn: Boolean,
-    },
-    data() {
-        return {
-            hasTheUserLoggedIn: false
-        }
-    },
-    mounted() {
-        this.hasTheUserLoggedIn = this.isUserLoggedIn
-    },
-}
+
 </script>

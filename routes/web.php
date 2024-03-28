@@ -32,3 +32,7 @@ Route::get('/logout', function () {
     App::make('auth')->logout();
     return redirect('/');
 })->name('logout');
+
+Route::get('/artists', function () {
+    return view('artists.index');
+})->name('artists');
