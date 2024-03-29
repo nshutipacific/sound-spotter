@@ -38,13 +38,13 @@
                 <!--Navigation-->
                 <div class="mt-8 text-sm ml-2">
                     <div class="mt-8">
-                        <a href="/artists" class=" p-2 block text-white border-b hover:bg-gray-900 cursor-pointer">
+                        <a href="/artists" class="p-2 block text-white border-b hover:bg-gray-900 cursor-pointer {{ request()->is('artists') ? 'bg-red-500' : '' }}">
                             <i class="fa fa-music mr-3"></i>
                             Artists
                         </a>
                     </div>
                     <div>
-                        <a href="/albums" class="p-2 block text-white border-b hover:bg-gray-900 cursor-pointer">
+                        <a href="/albums" class="p-2 block text-white border-b hover:bg-gray-900 cursor-pointer {{ request()->is('albums') ? 'bg-red-500' : '' }}">
                             <i class="fa-solid fa-compact-disc mr-3"></i>
                             Albums
                         </a>

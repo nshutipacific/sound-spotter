@@ -6,14 +6,22 @@ use Illuminate\Support\Facades\Http;
 
 
 Route::get('/albums', function () {
-    // Make the HTTP request to the API
     $response = Http::get(env('LAST_FM_API_URL'), [
         'method' => 'album.search',
         'album' => 'Album',
         'api_key' => env('LAST_FM_API_KEY'),
         'format' => 'json',
     ]);
+    return $response->json();
+});
 
-    // Process the response...
-    return $response->json(); // Returning the JSON response directly
+Route::get('/artists', function (Request $request) {
+    $artist = $request->query('artist', 'A'); 
+    $response = Http::get(env('LAST_FM_API_URL'), [
+        'method' => 'artist.search',
+        'artist' => $artist,
+        'api_key' => env('LAST_FM_API_KEY'),
+        'format' => 'json',
+    ]);
+    return $response->json();
 });
