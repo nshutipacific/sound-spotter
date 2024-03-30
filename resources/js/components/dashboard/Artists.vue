@@ -11,7 +11,7 @@
                 class="font-bold ml-2 w-full bg-gray-400 text-gray-900 outline-none" @keyup="handleArtistSearch">
         </div>
         <div class="flex flex-wrap">
-            <div v-for="artist in artists" :key="artist.id" class="w-1/4 relative m-2">
+            <div v-for="artist in  artists " :key="artist.id" class="w-1/4 relative m-2">
                 <div v-if="artists.length > 0" class="rounded">
                     <div class="flex" @click="openModal(artist.mbid)">
                         <div class="relative flex items-center justify-center">
@@ -33,17 +33,22 @@
             </div>
         </div>
     </div>
+    <information-modal @componentClosed="closeModal" v-if="openModalOnView" :showModal="showModal" :artistMbid="mbid" />
 </template>
 
 <script>
-import axios from 'axios';
+import InformationModal from '../InformationModal.vue';
 
 export default {
+    components: { InformationModal },
     data() {
         return {
             artists: [],
             artistToSearch: '',
             cancelToken: null,
+            mbid: '',
+            openModalOnView: false,
+            showModal: true,
         };
     },
     methods: {
@@ -66,10 +71,13 @@ export default {
         formatListeners(listeners) {
             return parseInt(listeners).toLocaleString();
         },
-        openModal(mbid) {
-            console.log('open modal')
-            this.$emit('openModal', mbid);
-        }
+        openModal(mbid) {        
+            this.mbid = mbid;
+            this.openModalOnView = true;
+        },
+        closeModal() {
+            this.openModalOnView = false;
+        },
     },
     mounted() {
         axios.get('/api/artists').then(response => {
