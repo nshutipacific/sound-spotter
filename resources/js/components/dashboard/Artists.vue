@@ -12,7 +12,7 @@
         </div>
         <div class="flex flex-wrap">
             <div v-for="artist in  artists " :key="artist.id" class="w-1/4 relative m-2">
-                <div v-if="artists.length > 0" class="rounded">
+                <div v-if="artist" class="rounded">
                     <div class="flex" @click="openModal(artist.mbid)">
                         <div class="relative flex items-center justify-center">
                             <img class="rounded h-full" :src="artist.image[2]['#text']" alt="">
@@ -65,13 +65,14 @@ export default {
                 },
                 cancelToken: this.cancelToken.token
             }).then(response => {
-                this.artists = response.data.results.artistmatches.artist;
+                this.artists = [];
+                this.artists = response.data.results.artistmatches.artist.filter(artist => artist.mbid);
             });
         },
         formatListeners(listeners) {
             return parseInt(listeners).toLocaleString();
         },
-        openModal(mbid) {        
+        openModal(mbid) {
             this.mbid = mbid;
             this.openModalOnView = true;
         },
@@ -81,7 +82,8 @@ export default {
     },
     mounted() {
         axios.get('/api/artists').then(response => {
-            this.artists = response.data.results.artistmatches.artist;
+            this.artists = [];
+             this.artists = response.data.results.artistmatches.artist.filter(artist => artist.mbid);
             console.log(this.artists)
         });
     }

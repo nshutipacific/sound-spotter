@@ -25,3 +25,45 @@ Route::get('/artists', function (Request $request) {
     ]);
     return $response->json();
 });
+
+Route::get('/artist/info', function (Request $request) {
+    $mbid = $request->query('mbid');
+
+    $allArtistInfo = Http::get(env('LAST_FM_API_URL'), [
+        'method' => 'artist.getInfo',
+        'mbid' => $mbid,
+        'api_key' => env('LAST_FM_API_KEY'),
+        'format' => 'json',
+    ]);
+
+    $artistTopAlbums = Http::get(env('LAST_FM_API_URL'), [
+        'method' => 'artist.getTopAlbums',
+        'mbid' => $mbid,
+        'api_key' => env('LAST_FM_API_KEY'),
+        'limit' => '5',
+        'format' => 'json',
+    ]);
+
+    $artistTopTracks = Http::get(env('LAST_FM_API_URL'), [
+        'method' => 'artist.getTopTracks',
+        'mbid' => $mbid,
+        'api_key' => env('LAST_FM_API_KEY'),
+        'limit' => '5',
+        'format' => 'json',
+    ]);
+
+    $artistSimilarArtsists = Http::get(env('LAST_FM_API_URL'), [
+        'method' => 'artist.getSimilar',
+        'mbid' => $mbid,
+        'api_key' => env('LAST_FM_API_KEY'),
+        'limit' => '5',
+        'format' => 'json',
+    ]);
+
+    return  [
+        'artistInfo' => $allArtistInfo->json(),
+        'artistTopAlbums' => $artistTopAlbums->json(),
+        'artistTopTracks' => $artistTopTracks->json(),
+        'artistSimilarArtsists' => $artistSimilarArtsists->json(),
+    ];
+});
