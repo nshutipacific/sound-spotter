@@ -34,14 +34,14 @@
             </div>
         </div>
     </div>
-    <information-modal @componentClosed="closeModal" v-if="openModalOnView" :showModal="showModal" :artistMbid="mbid" />
+    <artist-modal @componentClosed="closeModal" v-if="openModalOnView" :showModal="showModal" :artistMbid="mbid" />
 </template>
 
 <script>
-import InformationModal from '../InformationModal.vue';
+import ArtistModal from '../ArtistModal.vue';
 
 export default {
-    components: { InformationModal },
+    components: { ArtistModal },
     data() {
         return {
             artists: [],

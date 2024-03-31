@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import InformationModal from '../InformationModal.vue';
+import InformationModal from '../ArtistModal.vue';
 
 export default {
     components: { InformationModal },
