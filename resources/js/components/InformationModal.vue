@@ -12,7 +12,7 @@
                 Artist does not have mbid, please try another artist.
             </div>
             <div v-if="isLoading" class="bg-green-300 p-2 rounded">
-                Loading information ...
+                {{ isLoadingMessage }}
             </div>
             <div v-if="isLoading == false">
                 <div class="flex items-center bg-white shadow-lg p-2">
@@ -82,6 +82,7 @@ export default {
             },
             artistDoNotExist: false,
             isLoading: false,
+            isLoadingMessage: 'Loading artist information...',
         };
     },
     methods: {
@@ -106,15 +107,21 @@ export default {
             return str.replace(regex, '');
         },
         saveArtist() {
-            console.log('please save artist')
+            this.isLoadingMessage = 'Saving artist...';
+            this.isLoading = true;
+
             axios.post('/artists', {
                 mbid: this.artist.mbid,
                 name: this.artist.name,
                 image: this.artist.image,
                 listeners: this.artist.listeners,
             }).then(response => {
-                this.showPopup = false;
-                this.$emit('componentClosed');
+                this.isLoadingMessage = response.data.message;
+                
+                setTimeout(() => {                    
+                    this.showPopup = false;
+                    this.$emit('componentClosed');
+                }, 5000);
             });
         }
 
