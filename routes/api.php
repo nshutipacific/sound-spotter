@@ -5,10 +5,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
 
-Route::get('/albums', function () {
+Route::get('/albums', function (Request $request) {
+    $album = $request->query('album', 'Album');
     $response = Http::get(env('LAST_FM_API_URL'), [
         'method' => 'album.search',
-        'album' => 'Album',
+        'album' => $album,
         'api_key' => env('LAST_FM_API_KEY'),
         'format' => 'json',
     ]);
