@@ -129,6 +129,8 @@ export default {
                     this.showPopup = false;
                     this.$emit('componentClosed');
                 }, 5000);
+            }).catch(error => {
+                    this.isLoadingMessage = error.message;
             });
         }
 

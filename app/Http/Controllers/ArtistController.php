@@ -28,6 +28,7 @@ class ArtistController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate the incoming request data
         $validatedData = $request->validate([
             'mbid' => 'required',
             'name' => 'required',
@@ -35,17 +36,29 @@ class ArtistController extends Controller
             'listeners' => 'required',
         ]);
 
-        $artist = new Artist();
-        
-        $artist->mbid = $validatedData['mbid'];
-        $artist->name = $validatedData['name'];
-        $artist->image = $validatedData['image'];
-        $artist->listeners = $validatedData['listeners'];
-        $artist->saved_by_user = auth()->id();
+        if (auth()->check()) {
+            $userId = auth()->id();
 
-        $artist->save();
+            $existingArtist = Artist::where('mbid', $validatedData['mbid'])
+                ->where('saved_by_user', $userId)
+                ->first();
 
-        return response()->json(['message' => 'Artist Added to your Favourites'], 200);
+            if ($existingArtist) {
+                return response()->json(['message' => 'Artist is Already saved'], 200);
+            }
+
+            $artist = new Artist();
+            $artist->mbid = $validatedData['mbid'];
+            $artist->name = $validatedData['name'];
+            $artist->image = $validatedData['image'];
+            $artist->listeners = $validatedData['listeners'];
+            $artist->saved_by_user = $userId;
+            $artist->save();
+
+            return response()->json(['message' => 'Artist added to your favorites'], 200);
+        } else {
+            return response()->json(['message' => 'Please login to save artists'], 200);
+        }
     }
 
     /**
