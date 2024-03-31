@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Two\GoogleProvider;
+use App\Http\Controllers\ArtistController;
 
 Route::middleware([
     'auth:sanctum',
@@ -33,6 +34,4 @@ Route::get('/logout', function () {
     return redirect('/');
 })->name('logout');
 
-Route::get('/artists', function () {
-    return view('artists.index');
-})->name('artists');
+Route::resource('artists', ArtistController::class);
