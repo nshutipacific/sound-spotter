@@ -20,8 +20,7 @@
                         <div class="relative flex items-center justify-center">
                             <img class="rounded h-full" :src="artist.image[2]['#text']" alt="">
                             <div class="absolute h-full w-full opacity-35 bg-gray-900 hover:bg-green-500"></div>
-                            <div
-                                class="absolute max-h-1/3 w-full bottom-0 text-gray-800 text-xs font-medium shadow bg-white px-2 py-1 rounded-b hover:text-green-600">
+                            <div class="absolute max-h-1/3 w-full bottom-0 text-gray-800 text-xs font-medium shadow bg-white px-2 py-1 rounded-b">
                                 <div class="whitespace-nowrap overflow-hidden text-sm overflow-ellipsis">{{ artist.name }}</div>
                                 <div class="whitespace-nowrap overflow-hidden font-bold text-gray-600 overflow-ellipsis"> <i class="fa-solid fa-play"></i> {{ formatListeners(artist.listeners) }}</div>
                             </div>
