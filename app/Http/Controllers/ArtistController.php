@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Artist;
 
 class ArtistController extends Controller
 {
@@ -11,7 +12,7 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        //
+        return view('artists.index');
     }
 
     /**
@@ -27,7 +28,24 @@ class ArtistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'mbid' => 'required',
+            'name' => 'required',
+            'image' => 'required',
+            'listeners' => 'required',
+        ]);
+
+        $artist = new Artist();
+        
+        $artist->mbid = $validatedData['mbid'];
+        $artist->name = $validatedData['name'];
+        $artist->image = $validatedData['image'];
+        $artist->listeners = $validatedData['listeners'];
+        $artist->saved_by_user = auth()->id();
+
+        $artist->save();
+
+        return response()->json(['message' => 'Artist Added to your Favourites'], 200);
     }
 
     /**
