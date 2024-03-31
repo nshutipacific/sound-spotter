@@ -40,7 +40,14 @@
                             </li>
                         </ul>
                     </div>
-
+                    <div class="mt-4 p-2 rounded-lg">
+                        <h4 class=" font-bold text-blue-900">Top Albums</h4>
+                        <ul>
+                            <li v-for="topAlbum in artist.topAlbums" :key="topAlbum.name">
+                                {{ topAlbum.name }}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="mt-4 flex items-center justify-center w-full">
                     <button class="bg-green-500 px-2 py-1 rounded text-white cursor-pointer hover:bg-green-600" @click="saveArtist">
