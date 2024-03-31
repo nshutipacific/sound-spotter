@@ -53,7 +53,7 @@
                         <div>
                             <a href="/songs" class="p-2 block text-white border-b hover:bg-gray-900 cursor-pointer">
                                 <i class="fa fa-heart mr-3" aria-hidden="true"></i>
-                                My Music
+                                My Artists
                             </a>
                         </div>
                         <div>

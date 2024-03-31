@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Two\GoogleProvider;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\AlbumController;
 
 Route::middleware([
     'auth:sanctum',
@@ -35,3 +36,4 @@ Route::get('/logout', function () {
 })->name('logout');
 
 Route::resource('artists', ArtistController::class);
+Route::resource('albums', AlbumController::class);
