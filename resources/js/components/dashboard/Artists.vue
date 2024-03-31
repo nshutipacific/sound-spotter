@@ -10,22 +10,24 @@
             <input type="text" v-model="artistToSearch"
                 class="font-bold ml-2 w-full bg-gray-400 text-gray-900 outline-none" @keyup="handleArtistSearch">
         </div>
+        <div v-if="isLoadingArtists" class="bg-green-300 text-gray-900 font-bold p-2 text-xs mt-2 rounded">
+            Getting data ...
+        </div>
         <div class="flex flex-wrap">
-            <div v-for="artist in  artists " :key="artist.id" class="w-1/4 relative m-2">
+            <div v-for="artist in  artists " :key="artist.id" class="w-1/4 relative m-2 cursor-pointer">
                 <div v-if="artist" class="rounded">
                     <div class="flex" @click="openModal(artist.mbid)">
                         <div class="relative flex items-center justify-center">
                             <img class="rounded h-full" :src="artist.image[2]['#text']" alt="">
-                            <div class="absolute h-full w-full opacity-35 bg-gray-900"></div>
+                            <div class="absolute h-full w-full opacity-35 bg-gray-900 hover:bg-green-500"></div>
                             <div
-                                class="absolute max-h-1/3 w-full bottom-0 text-gray-800 text-xs font-bold shadow bg-white px-2 py-1 rounded-b">
-                                <div class="whitespace-nowrap overflow-hidden overflow-ellipsis">{{ artist.name }}</div>
-                                <div class="whitespace-nowrap overflow-hidden overflow-ellipsis"><i
-                                        class="fa-solid fa-eye"></i> {{ formatListeners(artist.listeners) }}</div>
+                                class="absolute max-h-1/3 w-full bottom-0 text-gray-800 text-xs font-medium shadow bg-white px-2 py-1 rounded-b hover:text-green-600">
+                                <div class="whitespace-nowrap overflow-hidden text-sm overflow-ellipsis">{{ artist.name }}</div>
+                                <div class="whitespace-nowrap overflow-hidden font-bold text-gray-600 overflow-ellipsis"> <i class="fa-solid fa-play"></i> {{ formatListeners(artist.listeners) }}</div>
                             </div>
                             <div
-                                class="absolute top-0 right-0 mr-2 mt-2 text-red-700 bg-white px-1 rounded-full shadow cursor-pointer">
-                                <i class="fa-solid fa-heart-circle-plus"></i>
+                                class="absolute top-0 right-0 mr-2 mt-2 text-gray-600 hover:text-green-700 rounded-full font-normal text-2xl cursor-pointer">
+                                <i class="fa-solid fa-circle-info"></i>
                             </div>
                         </div>
                     </div>
@@ -49,10 +51,15 @@ export default {
             mbid: '',
             openModalOnView: false,
             showModal: true,
+            isLoadingArtists: false
         };
     },
     methods: {
         handleArtistSearch() {
+            this.artists = [];
+            
+            this.isLoadingArtists = true;
+
             if (this.cancelToken) {
                 this.cancelToken.cancel();
             }
@@ -67,6 +74,7 @@ export default {
             }).then(response => {
                 this.artists = [];
                 this.artists = response.data.results.artistmatches.artist.filter(artist => artist.mbid);
+                this.isLoadingArtists = false;
             });
         },
         formatListeners(listeners) {
@@ -81,10 +89,11 @@ export default {
         },
     },
     mounted() {
+        this.isLoadingArtists = true;
         axios.get('/api/artists').then(response => {
             this.artists = [];
-             this.artists = response.data.results.artistmatches.artist.filter(artist => artist.mbid);
-            console.log(this.artists)
+            this.artists = response.data.results.artistmatches.artist.filter(artist => artist.mbid);
+            this.isLoadingArtists = false;
         });
     }
 };
