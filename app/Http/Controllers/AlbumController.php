@@ -27,7 +27,7 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
