@@ -7,6 +7,10 @@ use App\Models\Album;
 
 class AlbumController extends Controller
 {
+    public function allAlbums()
+    {
+        return view('albums.all');
+    }
     /**
      * Display a listing of the resource.
      */

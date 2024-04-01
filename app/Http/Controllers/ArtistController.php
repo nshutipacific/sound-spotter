@@ -7,6 +7,10 @@ use App\Models\Artist;
 
 class ArtistController extends Controller
 {
+    public function allArtists()
+    {
+        return view('artists.all');
+    }
     /**
      * Display a listing of the resource.
      */
