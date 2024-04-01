@@ -57,7 +57,6 @@ export default {
         axios.get('/api/albums')
             .then(response => {
                 this.albums = response.data.results.albummatches.album
-                console.log(response.data.results.albummatches.album)
             })
     }
 }

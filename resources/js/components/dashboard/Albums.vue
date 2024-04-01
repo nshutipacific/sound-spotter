@@ -96,7 +96,6 @@ export default {
     mounted() {
         this.isLoadingAlbums = true;
         axios.get('/api/albums').then(response => {
-            console.log(response)
             this.albums = [];
             this.albums = response.data.results.albummatches.album;
             this.isLoadingAlbums = false;

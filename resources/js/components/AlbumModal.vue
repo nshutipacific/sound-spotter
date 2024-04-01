@@ -93,7 +93,6 @@ export default {
             this.$emit('componentClosed');
         },
         fillInAlbumInfo(response) {
-            console.log(response)
             this.album.name = response.data.album.name;
             this.album.artist = response.data.album.artist;
             this.album.image = response.data.album.image[2]['#text']; 
@@ -101,8 +100,6 @@ export default {
             this.album.trackList = response.data.album.tracks.track;
             this.album.playCount = response.data.album.playcount;
             this.album.bio = this.removeLinkFromString(response.data.album.wiki.summary);
-
-            console.log(this.album);
         },
         saveAlbum() {
             this.isLoadingMessage = 'Saving album...';
@@ -132,13 +129,9 @@ export default {
         }
     },
     mounted() {
-        console.log(this.artistName, this.albumName);
-
         if (this.albumName == '' || this.artistName == '') {
             this.albumDoNotExist = true;
-            console.log('Album does not exist');
         } else {
-            console.log('Album exist');
             this.albumDoNotExist = false;
             this.isLoading = true;
 
