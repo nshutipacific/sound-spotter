@@ -35,8 +35,8 @@
                     <div>
                         <img class="h-32 rounded-md" :src="album.image[2]['#text']" :alt="album.name">
                     </div>
-                    <div class="mt-2 text-gray-300 font-bold whitespace-nowrap overflow-hidden overflow-ellipsis"> {{
-                    album.name }}</div>
+                    <div class="mt-2 text-gray-300 font-bold whitespace-nowrap overflow-hidden overflow-ellipsis">
+                         {{ album.name }}</div>
                     <div>{{ album.artist}}</div>
                 </div>
             </div>

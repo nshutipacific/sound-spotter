@@ -8,6 +8,7 @@ import Navigation from './components/Navigation.vue';
 import Artists from './components/dashboard/Artists.vue';
 import Albums from './components/dashboard/Albums.vue';
 import ArtistModal from './components/ArtistModal.vue';
+import AlbumModal from './components/AlbumModal.vue';
 
 const app = createApp({});
 app.component('app', App);
@@ -16,6 +17,7 @@ app.component('navigation', Navigation);
 app.component('artists', Artists);
 app.component('albums', Albums);
 app.component('artist-modal', ArtistModal);
+app.component('album-modal', AlbumModal);
 
 app.mount("#app");
 

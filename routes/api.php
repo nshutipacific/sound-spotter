@@ -68,3 +68,18 @@ Route::get('/artist/info', function (Request $request) {
         'artistSimilarArtsists' => $artistSimilarArtsists->json(),
     ];
 });
+
+Route::get('/album/info', function (Request $request) {
+    $album = $request->query('album');
+    $artist = $request->query('artist');
+
+    $response = Http::get(env('LAST_FM_API_URL'), [
+        'method' => 'album.getinfo',        
+        'api_key' => env('LAST_FM_API_KEY'),
+        'artist' => strval($artist),
+        'album' => strval($album),
+        'format' => 'json',
+    ]);
+
+    return $response->json();
+});

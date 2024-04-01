@@ -16,7 +16,7 @@
         <div class="flex flex-wrap">
             <div v-for="album in  albums " :key="album.id" class="w-1/4 relative m-2 cursor-pointer">
                 <div v-if="album" class="rounded">
-                    <div class="flex" @click="openModal(album.mbid)">
+                    <div class="flex" @click="openModal(album.artist, album.name)">
                         <div class="relative flex items-center justify-center">
                             <img class="rounded h-full" :src="album.image[2]['#text']" alt="">
                             <div class="absolute h-full w-full opacity-35 bg-gray-900 hover:bg-green-500"></div>
@@ -38,20 +38,21 @@
             </div>
         </div>
     </div>
-    <information-modal @componentClosed="closeModal" v-if="openModalOnView" :showModal="showModal" :albumMbid="mbid" />
+    <album-modal @componentClosed="closeModal" v-if="openModalOnView" :showModal="showModal" :artistName="artistName" :albumName="albumName" />
 </template>
 
 <script>
-import InformationModal from '../ArtistModal.vue';
+import AlbumModal from '../AlbumModal.vue';
 
 export default {
-    components: { InformationModal },
+    components: { AlbumModal },
     data() {
         return {
             albums: [],
             albumToSearch: '',
             cancelToken: null,
-            mbid: '',
+            artistName: '',
+            albumName: '',
             openModalOnView: false,
             showModal: true,
             isLoadingAlbums: false
@@ -83,8 +84,9 @@ export default {
         formatListeners(listeners) {
             return parseInt(listeners).toLocaleString();
         },
-        openModal(mbid) {
-            this.mbid = mbid;
+        openModal(artistName, albumName) {
+            this.artistName = artistName;
+            this.albumName = albumName;
             this.openModalOnView = true;
         },
         closeModal() {
