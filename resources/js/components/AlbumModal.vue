@@ -107,6 +107,7 @@ export default {
 
             axios.post('/albums', {
                 name: this.album.name,
+                artist: this.album.artist,
                 image: this.album.image,
                 album: this.album.artist,
             }).then(response => {

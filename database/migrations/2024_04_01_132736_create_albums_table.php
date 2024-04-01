@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('artist');
             $table->string('image');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('saved_by_user');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('saved_by_user')->references('id')->on('users');
         });
     }
 

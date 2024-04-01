@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Album;
 
 class AlbumController extends Controller
 {
@@ -27,6 +28,35 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
+        $validetedData = $request->validate([
+            'name' => 'required',
+            'artist' => 'required',
+            'image' => 'required',
+        ]);
+
+        if(auth()->check()){
+            $userId = auth()->id();
+
+            $existingAlbum = Album::where('name', $validetedData['name'])
+                ->where('artist', $validetedData['artist'])
+                ->where('saved_by_user', $userId)
+                ->first();
+
+            if($existingAlbum){
+                return response()->json(['message' => 'Album is already saved'], 200);
+            }
+
+            $album = new Album();
+            $album->name = $validetedData['name'];
+            $album->artist = $validetedData['artist'];
+            $album->image = $validetedData['image'];
+            $album->saved_by_user = $userId;
+            $album->save();
+
+            return response()->json(['message' => 'Album added to your favorites'], 200);
+        } else {
+            return response()->json(['message' => 'Please login to save albums'], 200);
+        }
         
     }
 
