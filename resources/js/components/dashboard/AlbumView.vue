@@ -5,7 +5,9 @@
             </div>
             <div class="w-full items-center justify-center flex text-sm">... You are viewing an Individual Album</div>
             <div class="w-full items-center justify-center flex text-sm">
-                <a href="/albums" class="items-center justify-center flex text-sm bg-green-300 mt-3 px-3 py-1 text-gray-900 text-xs font-bold cursor-pointer rounded-lg"> ..back to Albums </a>
+                <a href="/albums"
+                    class="items-center justify-center flex text-sm bg-green-300 mt-3 px-3 py-1 text-gray-900 text-xs font-bold cursor-pointer rounded-lg">
+                    ..back to Albums </a>
             </div>
         </div>
         <div v-if="isLoadingAlbums" class="bg-green-300 text-gray-900 font-bold p-2 text-xs mt-2 rounded">
@@ -71,7 +73,6 @@ export default {
             this.isEditing = !this.isEditing;
         },
         saveAlbum() {
-            console.log(this.albumToView)
             this.isEditing = !this.isEditing;
         },
         closeModal() {
@@ -82,15 +83,17 @@ export default {
         },
         deleteAlbum() {
             if (window.confirm('Are you sure you want to delete ' + this.albumToView.name + '?')) {
-                console.log('Deleting album', this.albumToView.id)
-            } else {
-                console.log('Not Deleting album', this.albumToView.id)
+                axios.delete('/albums/' + this.albumToView.id)
+                    .then(response => {
+                        window.location.href = '/albums/?message=' + response.data.message;
+                    })
+                    .catch(error => {
+                        window.location.href = '/albums/?message=' + error.response.data.message;
+                    })
             }
-
         }
     },
     mounted() {
-        console.log(this.albumToView)
     }
 }
 </script>

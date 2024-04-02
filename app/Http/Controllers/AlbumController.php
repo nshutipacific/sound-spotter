@@ -99,6 +99,14 @@ class AlbumController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $userId = auth()->id();
+        $album = Album::where('id', $id)->where('saved_by_user', $userId)->first();
+
+        if($album){
+            $album->delete();  
+            return response()->json(['message' => 'Album deleted Successfully'], 200);
+        } else {
+            return response()->json(['message' => 'Album Not deleted'], 200);
+        }
     }
 }

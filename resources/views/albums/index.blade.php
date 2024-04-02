@@ -9,6 +9,11 @@
         <div class="flex items-center justify-center w-full bg-gray-300 rounded-t-lg p-4 text-gray-900 text-lg font-bold"> {{auth()->user()->name }} Favourite Album(s)</div>
         <div class="flex items-center justify-center w-full px-4 py-1 bg-green-500 text-white text-sm"> Click info to view, edit and delete album</div>
         <div class="flex items-center justify-center w-full px-4 bg-gray-600 text-white text-xs py-1"> Editing an album could lead to not finding additional details</div>
+        @if(isset($_GET['message']))
+        <div class="flex items-center justify-center w-full px-4 bg-red-600 text-white font-bold text-xs py-1">
+            {{ $_GET['message'] ?? '' }}
+        </div>
+        @endif
         <table class="mt-4 bg-gray-700 rounded mb-4">
             <thead>
                 <tr>
