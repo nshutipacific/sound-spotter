@@ -34,7 +34,7 @@
                     <div class="mt-4 p-2 rounded-lg">
                         <h4 class=" font-bold text-blue-900">Tracks on this album</h4>
                         <ul>
-                            <li v-for="track in album.trackList" :key="track.name">
+                            <li class="text-xs" v-for="track in album.trackList" :key="track.name">
                                 {{ track.name }}
                             </li>
                         </ul>
