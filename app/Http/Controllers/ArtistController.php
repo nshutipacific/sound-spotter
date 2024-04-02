@@ -16,14 +16,10 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        if (auth()->check()) {
-            $userId = auth()->id();
-            $artists = Artist::where('saved_by_user', $userId)->get();
+        $userId = auth()->id();
+        $artists = Artist::where('saved_by_user', $userId)->get();
 
-            return view('artists.index', ['artists' => $artists]);
-        } else {
-            return response()->json(['message' => 'Please login to get artists'], 200);
-        }
+        return view('artists.index', ['artists' => $artists]);
     }
 
     /**

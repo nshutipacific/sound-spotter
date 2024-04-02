@@ -16,7 +16,10 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        return view('albums.index');
+        $userId = auth()->id();
+        $albums = Album::where('saved_by_user', $userId)->get();
+
+        return view('albums.index', compact('albums'));
     }
 
     /**
