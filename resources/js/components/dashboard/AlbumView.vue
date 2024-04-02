@@ -37,11 +37,12 @@
             </div>
             <div v-else class="flex gap-2 text-xs font-bold">
                 <button @click="editAlbum" class="bg-gray-300 rounded px-4 py-2 text-gray-900">Edit Album</button>
-                <button class="bg-green-300 rounded px-4 py-2 text-gray-900"> View Album (Last.fm)</button>
+                <button @click="viewAlbum" class="bg-green-300 rounded px-4 py-2 text-gray-900"> View Album (Last.fm)</button>
                 <button class="bg-red-300 rounded px-4 py-2 text-gray-900"> Delete Album</button>
             </div>
         </div>
     </div>
+    <album-modal @componentClosed="closeModal" v-if="openModalOnView" :showModal="showModal" :artistName="albumToView.artist" :albumName="albumToView.name" :showModalButtons="false"/>
 </template>
 <script>
 export default {
@@ -56,6 +57,8 @@ export default {
             isEditing: false,
             isLoadingAlbums: false,
             albumToView: this.album,
+            openModalOnView: false,
+            showModal: true,
         }
     },
     methods: {
@@ -65,6 +68,12 @@ export default {
         saveAlbum() {
             console.log(this.albumToView)
             this.isEditing = !this.isEditing;
+        },
+        closeModal() {
+            this.openModalOnView = false;
+        },
+        viewAlbum() {
+            this.openModalOnView = true;
         }
     },
     mounted() {
