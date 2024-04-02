@@ -14,35 +14,39 @@
             {{ $_GET['message'] ?? '' }}
         </div>
         @endif
-        <table class="mt-4 bg-gray-700 rounded mb-4">
-            <thead>
-                <tr>
-                    <th class="p-2 text-white pl-4">No</th>
-                    <th class="p-2 text-white">Image</th>
-                    <th class="p-2 text-white">Name</th>
-                    <th class="p-2 text-white">Artist Name</th>
-                    <th class="p-2 text-white pr-4">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($albums as $album)
-                <tr class="border-b">
-                    <td class="p-2 text-xs pl-4">{{ $loop->index + 1 }}</td>
-                    <td class="p-2 text-xs"><img class="rounded-full h-8 w-8" src="{{ $album->image }}" alt="{{ $album->name }}" width="50" height="50"></td>
-                    <td class="p-2 text-xs">{{ $album->name }}</td>
-                    <td class="p-2 text-xs">{{ $album->artist }}</td>
-                    <td class="p-2 text-xs pr-4">
-                        <div class="flex gap-4 bg-gray-300 rounded text-gray-900 px-3 py-1 font-bold hover:bg-green-400 hover:text-white">
-                            <a href="/albums/{{ $album->name }}">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                Info
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        @if(count($albums) === 0)
+            <p class="py-4">You do not have any saved album yet.</p>
+        @else
+            <table class="mt-4 bg-gray-700 rounded mb-4">
+                <thead>
+                    <tr>
+                        <th class="p-2 text-white pl-4">No</th>
+                        <th class="p-2 text-white">Image</th>
+                        <th class="p-2 text-white">Name</th>
+                        <th class="p-2 text-white">Artist Name</th>
+                        <th class="p-2 text-white pr-4">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($albums as $album)
+                    <tr class="border-b">
+                        <td class="p-2 text-xs pl-4">{{ $loop->index + 1 }}</td>
+                        <td class="p-2 text-xs"><img class="rounded-full h-8 w-8" src="{{ $album->image }}" alt="{{ $album->name }}" width="50" height="50"></td>
+                        <td class="p-2 text-xs">{{ $album->name }}</td>
+                        <td class="p-2 text-xs">{{ $album->artist }}</td>
+                        <td class="p-2 text-xs pr-4">
+                            <div class="cursor-pointer flex gap-4 bg-gray-300 rounded text-gray-900 px-3 py-1 font-bold hover:bg-green-400 hover:text-white">
+                                <a href="/albums/{{ $album->name }}">
+                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                    Info
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
     </div>
 </div>
 @else

@@ -14,6 +14,9 @@
         {{ $_GET['message'] ?? '' }}
     </div>
     @endif
+    @if(count($artists) === 0)
+        <p class="py-4">You do not have any saved artist yet.</p>
+    @else
     <table class="mt-4 bg-gray-700 rounded mb-4">
         <thead>
             <tr>
@@ -32,7 +35,7 @@
                 <td class="p-2 text-xs">{{ $artist->name }}</td>
                 <td class="p-2 text-xs">{{ $artist->listeners }}</td>
                 <td class="p-2 text-xs pr-4">
-                    <div class="flex gap-4 bg-gray-300 rounded text-gray-900 px-3 py-1 font-bold hover:bg-green-400 hover:text-white">
+                    <div class="cursor-pointer flex gap-4 bg-gray-300 rounded text-gray-900 px-3 py-1 font-bold hover:bg-green-400 hover:text-white">
                         <a href="/artists/{{ $artist->mbid }}">
                             <i class="fa fa-info-circle" aria-hidden="true"></i>
                             Info
@@ -43,6 +46,7 @@
             @endforeach
         </tbody>
     </table>
+    @endif
 </div>
 @else
 <div class="flex items-center justify-center w-full">
