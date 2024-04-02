@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Two\GoogleProvider;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\StatisticsController;
 
 Route::middleware([
     'auth:sanctum',
@@ -42,3 +43,5 @@ Route::resource('albums', AlbumController::class)->only([
 
 Route::get('/all-artists', [ArtistController::class, 'allArtists'])->name('all-artists');
 Route::get('/all-albums', [AlbumController::class, 'allAlbums'])->name('all-albums');
+
+Route::get('stats', [StatisticsController::class, 'index'])->name('stats');

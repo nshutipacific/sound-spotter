@@ -5,6 +5,7 @@
 /* width */
 ::-webkit-scrollbar {
     height: 7px;
+    width: 5px;
     outline: 1px solid white;
     border-radius: 10px;
   }

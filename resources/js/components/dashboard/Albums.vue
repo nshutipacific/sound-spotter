@@ -13,7 +13,7 @@
         <div v-if="isLoadingAlbums" class="bg-green-300 text-gray-900 font-bold p-2 text-xs mt-2 rounded">
             Getting data ...
         </div>
-        <div class="flex flex-wrap">
+        <div class="flex flex-wrap h-full h-screen overflow-y-auto">
             <div v-for="album in  albums " :key="album.id" class="w-1/4 relative m-2 cursor-pointer">
                 <div v-if="album" class="rounded">
                     <div class="flex" @click="openModal(album.artist, album.name)">
