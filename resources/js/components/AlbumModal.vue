@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div v-if="albumDoNotExist" class="bg-red-300 p-2 rounded">
-                Album does not have name, please try another album.
+                Album does not exist
             </div>
             <div v-if="isLoading" class="bg-green-300 p-2 rounded">
                 {{ isLoadingMessage }}
@@ -147,7 +147,11 @@ export default {
                 }
             }).then(response => {
                 this.isLoading = false;
-                this.fillInAlbumInfo(response);
+                if(response.data.error){
+                    this.albumDoNotExist = true;
+                }else{
+                    this.fillInAlbumInfo(response);
+                }                
             })
         }
     }

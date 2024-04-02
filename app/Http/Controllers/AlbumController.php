@@ -41,7 +41,7 @@ class AlbumController extends Controller
             'image' => 'required',
         ]);
 
-        if(auth()->check()){
+        if (auth()->check()) {
             $userId = auth()->id();
 
             $existingAlbum = Album::where('name', $validetedData['name'])
@@ -49,7 +49,7 @@ class AlbumController extends Controller
                 ->where('saved_by_user', $userId)
                 ->first();
 
-            if($existingAlbum){
+            if ($existingAlbum) {
                 return response()->json(['message' => 'Album is already saved'], 200);
             }
 
@@ -64,7 +64,6 @@ class AlbumController extends Controller
         } else {
             return response()->json(['message' => 'Please login to save albums'], 200);
         }
-        
     }
 
     /**
@@ -89,9 +88,26 @@ class AlbumController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'artist' => 'required',
+            'image' => 'required',
+        ]);
+
+        $album = Album::find($request->id);
+        
+        $album->name = $validatedData['name'];
+        $album->artist = $validatedData['artist'];
+        $album->image = $validatedData['image'];
+
+        if($album->update()){
+            return response()->json(['message' => 'Album updated Successfully'], 200);
+        }else{
+            return response()->json(['message' => 'Album Not updated'], 200);
+        }
+
     }
 
     /**
@@ -102,8 +118,8 @@ class AlbumController extends Controller
         $userId = auth()->id();
         $album = Album::where('id', $id)->where('saved_by_user', $userId)->first();
 
-        if($album){
-            $album->delete();  
+        if ($album) {
+            $album->delete();
             return response()->json(['message' => 'Album deleted Successfully'], 200);
         } else {
             return response()->json(['message' => 'Album Not deleted'], 200);

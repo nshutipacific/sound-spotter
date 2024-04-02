@@ -74,6 +74,14 @@ export default {
         },
         saveAlbum() {
             this.isEditing = !this.isEditing;
+
+            axios.patch('albums', this.albumToView)
+                .then(response => {
+                    window.location.href = '/albums/?message=' + response.data.message;
+                })
+                .catch(error => {
+                    window.location.href = '/albums/?message=' + error.response.data.message;
+                })
         },
         closeModal() {
             this.openModalOnView = false;
