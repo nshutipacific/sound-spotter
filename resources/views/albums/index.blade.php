@@ -8,7 +8,7 @@
     <div class="bg-gray-800 rounded-lg flex flex-wrap items-center justify-center">
         <div class="flex items-center justify-center w-full bg-gray-300 rounded-t-lg p-4 text-gray-900 text-lg font-bold"> {{auth()->user()->name }} Favourite Album(s)</div>
         <div class="flex items-center justify-center w-full px-4 py-1 bg-green-500 text-white text-sm"> You can view, edit and delete an Albums</div>
-        <div class="flex items-center justify-center w-full px-4 py-1 bg-red-500 text-white text-sm"> Editing an album could lead to not finding additional details</div>
+        <div class="flex items-center justify-center w-full px-4 bg-gray-600 text-white text-xs py-1"> Editing an album could lead to not finding additional details</div>
         <table class="mt-4 bg-gray-700 rounded mb-4">
             <thead>
                 <tr>
