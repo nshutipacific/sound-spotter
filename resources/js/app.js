@@ -10,8 +10,10 @@ import Albums from './components/dashboard/Albums.vue';
 import ArtistModal from './components/ArtistModal.vue';
 import AlbumModal from './components/AlbumModal.vue';
 import GoogleSignInButton from './components/GoogleSignInButton.vue';
+import AlbumView from './components/dashboard/AlbumView.vue';
 
 const app = createApp({});
+
 app.component('app', App);
 app.component('dashboard', Dashboard);
 app.component('navigation', Navigation);
@@ -20,6 +22,7 @@ app.component('albums', Albums);
 app.component('artist-modal', ArtistModal);
 app.component('album-modal', AlbumModal);
 app.component('google-sign-in-button', GoogleSignInButton);
+app.component('album-view', AlbumView);
 
 app.mount("#app");
 

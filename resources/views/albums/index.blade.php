@@ -28,15 +28,15 @@
                     <td class="p-2 text-xs">{{ $album->artist }}</td>
                     <td class="p-2 text-xs pr-4">
                         <div class="flex gap-4">
-                            <div class="text-green-500 hover:text-green-700  cursor-pointer">
+                            <a href="/albums/{{ $album->name }}" class="text-green-500 hover:text-green-700 cursor-pointer">
                                 <i class="fa fa-eye"></i>
-                            </div>
-                            <div class="text-yellow-500 hover:text-yellow-700  cursor-pointer">
+                            </a>
+                            <a class="text-yellow-500 hover:text-yellow-700  cursor-pointer">
                                 <i class="fas fa-edit"></i>
-                            </div>
-                            <div class="text-red-500 hover:text-yellow-700  cursor-pointer">
+                            </a>
+                            <a class="text-red-500 hover:text-yellow-700  cursor-pointer">
                                 <i class="fa-solid fa-trash"></i>
-                            </div>
+                            </a>
                         </div>
                     </td>
                 </tr>

@@ -70,9 +70,12 @@ class AlbumController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $albumName)
     {
-        //
+        $userId = auth()->id();
+        $album = Album::where('name', $albumName)->where('saved_by_user', $userId)->first();
+
+        return view('albums.show', compact('album'));
     }
 
     /**
