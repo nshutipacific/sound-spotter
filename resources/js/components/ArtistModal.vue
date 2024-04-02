@@ -49,7 +49,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="mt-4 flex items-center justify-center w-full">
+                <div v-if="showModalButtons" class="mt-4 flex items-center justify-center w-full">
                     <button class="bg-green-500 px-2 py-1 rounded text-white cursor-pointer hover:bg-green-600" @click="saveArtist">
                         Add to My Artists
                     </button>
@@ -73,6 +73,10 @@ export default {
             type: String,
             default: '',
         },
+        showModalButtons: {
+            type: Boolean,
+            default: true,
+        }
     },
     data() {
         return {

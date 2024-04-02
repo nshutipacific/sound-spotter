@@ -73,7 +73,11 @@ class ArtistController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $userId = auth()->id();
+        $artist = Artist::where('mbid', $id)
+            ->where('saved_by_user', $userId)
+            ->first();
+        return view('artists.show', compact('artist'));
     }
 
     /**
@@ -87,9 +91,27 @@ class ArtistController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'mbid' => 'required',
+            'name' => 'required',
+            'image' => 'required',
+            'listeners' => 'required',
+        ]);
+
+        $artist = Artist::find($request->id);
+
+        $artist->mbid = $validatedData['mbid'];
+        $artist->name = $validatedData['name'];
+        $artist->image = $validatedData['image'];
+        $artist->listeners = $validatedData['listeners'];
+
+        if($artist->update()){
+            return response()->json(['message' => 'Artist updated successfully'], 200);
+        } else {
+            return response()->json(['message' => 'Artist not updated'], 200);
+        }
     }
 
     /**
@@ -97,6 +119,16 @@ class ArtistController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $userId = auth()->id();
+        $artist = Artist::where('id', $id)
+            ->where('saved_by_user', $userId)
+            ->first();
+
+        if ($artist) {
+            $artist->delete();
+            return response()->json(['message' => 'Artist removed from your favorites'], 200);
+        } else {
+            return response()->json(['message' => 'Artist not found in your favorites'], 200);
+        }
     }
 }
