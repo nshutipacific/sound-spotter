@@ -7,7 +7,7 @@
 <div>
     <div class="bg-gray-800 rounded-lg flex flex-wrap items-center justify-center">
         <div class="flex items-center justify-center w-full bg-gray-300 rounded-t-lg p-4 text-gray-900 text-lg font-bold"> {{auth()->user()->name }} Favourite Album(s)</div>
-        <div class="flex items-center justify-center w-full px-4 py-1 bg-green-500 text-white text-sm"> You can view, edit and delete an Albums</div>
+        <div class="flex items-center justify-center w-full px-4 py-1 bg-green-500 text-white text-sm"> Click info to view, edit and delete album</div>
         <div class="flex items-center justify-center w-full px-4 bg-gray-600 text-white text-xs py-1"> Editing an album could lead to not finding additional details</div>
         <table class="mt-4 bg-gray-700 rounded mb-4">
             <thead>
@@ -27,15 +27,10 @@
                     <td class="p-2 text-xs">{{ $album->name }}</td>
                     <td class="p-2 text-xs">{{ $album->artist }}</td>
                     <td class="p-2 text-xs pr-4">
-                        <div class="flex gap-4">
-                            <a href="/albums/{{ $album->name }}" class="text-green-500 hover:text-green-700 cursor-pointer">
-                                <i class="fa fa-eye"></i>
-                            </a>
-                            <a class="text-yellow-500 hover:text-yellow-700  cursor-pointer">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a class="text-red-500 hover:text-yellow-700  cursor-pointer">
-                                <i class="fa-solid fa-trash"></i>
+                        <div class="flex gap-4 bg-gray-300 rounded text-gray-900 px-3 py-1 font-bold hover:bg-green-400 hover:text-white">
+                            <a href="/albums/{{ $album->name }}">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                Info
                             </a>
                         </div>
                     </td>

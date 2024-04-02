@@ -4,6 +4,9 @@
             <div class="w-full items-center justify-center flex text-white text-2xl font-black">Sound Spotter Album
             </div>
             <div class="w-full items-center justify-center flex text-sm">... You are viewing an Individual Album</div>
+            <div class="w-full items-center justify-center flex text-sm">
+                <a href="/albums" class="items-center justify-center flex text-sm bg-green-300 mt-3 px-3 py-1 text-gray-900 text-xs font-bold cursor-pointer rounded-lg"> ..back to Albums </a>
+            </div>
         </div>
         <div v-if="isLoadingAlbums" class="bg-green-300 text-gray-900 font-bold p-2 text-xs mt-2 rounded">
             Getting data ...
@@ -37,12 +40,14 @@
             </div>
             <div v-else class="flex gap-2 text-xs font-bold">
                 <button @click="editAlbum" class="bg-gray-300 rounded px-4 py-2 text-gray-900">Edit Album</button>
-                <button @click="viewAlbum" class="bg-green-300 rounded px-4 py-2 text-gray-900"> View Album (Last.fm)</button>
-                <button class="bg-red-300 rounded px-4 py-2 text-gray-900"> Delete Album</button>
+                <button @click="viewAlbum" class="bg-green-300 rounded px-4 py-2 text-gray-900"> View Album
+                    (Last.fm)</button>
+                <button @click="deleteAlbum" class="bg-red-300 rounded px-4 py-2 text-gray-900"> Delete Album</button>
             </div>
         </div>
     </div>
-    <album-modal @componentClosed="closeModal" v-if="openModalOnView" :showModal="showModal" :artistName="albumToView.artist" :albumName="albumToView.name" :showModalButtons="false"/>
+    <album-modal @componentClosed="closeModal" v-if="openModalOnView" :showModal="showModal"
+        :artistName="albumToView.artist" :albumName="albumToView.name" :showModalButtons="false" />
 </template>
 <script>
 export default {
@@ -74,6 +79,14 @@ export default {
         },
         viewAlbum() {
             this.openModalOnView = true;
+        },
+        deleteAlbum() {
+            if (window.confirm('Are you sure you want to delete ' + this.albumToView.name + '?')) {
+                console.log('Deleting album', this.albumToView.id)
+            } else {
+                console.log('Not Deleting album', this.albumToView.id)
+            }
+
         }
     },
     mounted() {
