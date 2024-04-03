@@ -14,7 +14,7 @@
             Getting data ...
         </div>
         <div class="flex flex-wrap">
-            <div v-for="artist in  artists " :key="artist.id" class="w-1/4 relative m-2 cursor-pointer">
+            <div v-for="artist in  artists " :key="artist.id" class="md:w-1/4 xs:w-full sm:w-full relative m-2 cursor-pointer">
                 <div v-if="artist" class="rounded">
                     <div class="flex" @click="openModal(artist.mbid)">
                         <div class="relative flex items-center justify-center">

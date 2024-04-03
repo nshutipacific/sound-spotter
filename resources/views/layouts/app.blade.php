@@ -9,9 +9,9 @@
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    <div id="app">
-        <div class="flex m-6 bg-gray-800 rounded-lg">
-            <div class="w-1/4">
+    <div id="app" class="flex items-center justify-center">
+        <div class="flex m-6 bg-gray-800 rounded-lg w-full lg:w-3/4 2xl:w-1/2">
+            <div class="w-1/4 block">
                 @auth
                 <a href="/dashboard">
                     @else
@@ -65,10 +65,11 @@
                         </div>
                         @auth
                         <div class="mt-8 mb-8">
-                            <div class="p-2">
-                                <a href="/logout" class="bg-red-500 px-4 py-2 rounded font-bold text-white">
-                                    <i class="fa-solid fa-right-from-bracket mr-3 -scale-x-100"></i>
-                                    Sign out
+                            <div class="p-2 bg-red-500 px-4 py-2 rounded font-bold text-white">
+                                <a href="/logout" class="flex gap-2">
+                                    <div><i class="fa-solid fa-right-from-bracket mr-3 -scale-x-100"></i></div>
+                                   
+                                    <div class="hidden md:block">Sign out</div>
                                 </a>
                             </div>
                         </div>

@@ -4,7 +4,7 @@
 
 
 @section('content')
-    <App/>
+    <app/>
 @endsection
 @auth
     <script>

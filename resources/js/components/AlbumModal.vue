@@ -1,7 +1,7 @@
 <template>
     <div v-if="showPopup" class="absolute w-full h-full z-40 opacity-50 inset-0 bg-black"></div>
     <div v-if="showPopup"
-        class="absolute w-3/5 ml-4 top-0 mt-64 z-50 bg-white shadow-2xl border-1 rounded-md p-4 flex items-center justify-center">
+        class="absolute w-3/5 ml-4 top-0 md:mt-64 mt-12 z-50 bg-white shadow-2xl border-1 rounded-md p-4 flex items-center justify-center">
         <div class="bg-white w-full rounded-md text-sm text-gray-900">
             <div class="flex w-full justify-end">
                 <button class="text-2xl text-red-500 cursor-pointer hover:text-red-700" @click="onClose">
@@ -15,7 +15,7 @@
                 {{ isLoadingMessage }}
             </div>
             <div v-if="isLoading == false">
-                <div class="flex items-center bg-white shadow-lg p-2">
+                <div class="md:flex items-center bg-white shadow-lg p-2">
                     <img v-if="album.image" :src="album.image" class="w-30 h-30 rounded-full" alt="album image">
                     <div class="ml-4">
                         <h3 class="text-lg font-bold text-blue-900">{{ album.name }}</h3>
