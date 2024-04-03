@@ -37,9 +37,7 @@ Route::get('/logout', function () {
 })->name('logout');
 
 Route::resource('artists', ArtistController::class);
-Route::resource('albums', AlbumController::class)->only([
-    'index', 'store', 'show', 'update', 'destroy'
-]);
+Route::resource('albums', AlbumController::class);
 
 Route::get('/all-artists', [ArtistController::class, 'allArtists'])->name('all-artists');
 Route::get('/all-albums', [AlbumController::class, 'allAlbums'])->name('all-albums');
