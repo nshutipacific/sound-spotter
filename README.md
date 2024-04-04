@@ -45,7 +45,6 @@ npm run dev
 
 6. Acces the project on 
 
-localhost:8000
+http://localhost:8000
 
-NB: do not use 127.0.0.1
 
