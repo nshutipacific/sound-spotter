@@ -16,49 +16,36 @@ Vite: 5.0
 Vue: 3.4.21
 TailwindCSS: 3.4.1
 Vite plugin vue: 5.0.4
+FontAwesome Free 6.5.1
 
-# Installation/Run Guide
+# Installation/Run Guide 
+# DOCKER USAGE
 
-Sure, here are the steps in a copy-friendly format:
+1. CHECK YOUR .env file and build it based on .env.example
+2. FIll in API KEYS MISSING(Google and last FM)
+3. A Copy of ENV is also shared
 
-1. Clone the repository:
-2. Navigate to the project directory:
-3. Install PHP dependencies:
+Download Docker Desktop v 4.28.0
+Install necessary packages including enabling WSL for windows
+Make sure docker is up and running.
 
-   composer install
+1. Clone the repo (master branch)
 
-4. Install JavaScript dependencies:
+2. Open project folder 
 
-   npm install
+3. open your terminal (Git bash recommended)
 
-5. Compile assets:
+4. RUN Command 
 
-   npm run dev
+docker compose up --build
 
-6. Set up environment variables:
+5. Compile your packages (local )
 
-   Then, open the `.env` file and set your application's environment variables.
+npm run dev 
 
-   Google Authentication and Last fm Keys 
-   are also set on env file.
+6. Acces the project on 
 
-   # Example
-    GOOGLE_CLIENT_ID=YOUR KEY
-    GOOGLE_CLIENT_SECRET=YOUR KEY
-    GOOGLE_REDIRECT_URI=http://127.0.0.1:8000/login/google/callback
+localhost:8000
 
-    LAST_FM_API_URL=http://ws.audioscrobbler.com/2.0/
-    LAST_FM_API_KEY=YOUR KEY
+NB: do not use 127.0.0.1
 
-7. Run migrations:
-
-    php artisan migrate
-
-8. Start the server:
-
-   php artisan serve
-
-10. to run tests
-
-    php artisan test
- 
