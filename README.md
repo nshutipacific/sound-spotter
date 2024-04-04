@@ -1,12 +1,15 @@
 # Project Description
 
-This project is a Laravel, Vue.js application that uses the Last.fm API to provide information about artists and albums. It allows users to search for artists by name and view details about each artist, including a list of albums. The application is styled with Tailwind CSS for a modern and responsive user interface.
+This project is a Laravel, Vue.js application that uses the Last.fm API to provide information about artists and albums.
+It allows users to search for artists by name and view details about each artist, including a list of albums.
+It also allows users to search fro albums by name and view details including artits, release data etc.
 
-The application's architecture follows best practices for Vue.js development, with components organized in a modular and reusable way. It also includes error handling for the API requests to ensure a smooth user experience.
+Logged in users use only Google Integrated Authenntication and are able to save edit delete a list of albums and artists that are saved from last fm
 
-The project also includes a set of unit tests to verify the functionality of the components and the API integration. These tests use the Jest testing framework and Vue Test Utils.
+The application is styled with Tailwind CSS, responsive but optimumly running on large devices.
 
-This project is a great example of a modern web application built with Vue.js and Tailwind CSS, and it can serve as a reference or starting point for similar projects.
+The project also includes a set of unit tests.
+
 
 # Tech stacks versions
 
