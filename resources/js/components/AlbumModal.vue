@@ -1,7 +1,7 @@
 <template>
     <div v-if="showPopup" class="absolute w-full h-full z-40 opacity-50 inset-0 bg-black"></div>
     <div v-if="showPopup"
-        class="absolute w-3/5 ml-4 top-0 md:mt-64 mt-12 z-50 bg-white shadow-2xl border-1 rounded-md p-4 flex items-center justify-center">
+        class="absolute w-3/5 ml-4 top-0 md:mt-64 mt-12 lg:mt-12 z-50 bg-white shadow-2xl border-1 rounded-md p-4 flex items-center justify-center">
         <div class="bg-white w-full rounded-md text-sm text-gray-900">
             <div class="flex w-full justify-end">
                 <button class="text-2xl text-red-500 cursor-pointer hover:text-red-700" @click="onClose">
@@ -30,6 +30,10 @@
 
                         <h4 class="mt-4 font-bold text-blue-900">Total Plays</h4>
                         <p>{{ formatListeners(album.playCount) }}</p>
+                    </div>
+                    <div class="mt-4 p-2 rounded-lg">
+                        <h4 class=" font-bold text-blue-900">Artist</h4>                        
+                        <p>{{ album.artist }}</p>
                     </div>
                     <div class="mt-4 p-2 rounded-lg">
                         <h4 class=" font-bold text-blue-900">Tracks on this album</h4>
