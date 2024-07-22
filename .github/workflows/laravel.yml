@@ -39,7 +39,7 @@ jobs:
         restore-keys: ${{ runner.os }}-composer-
 
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest --ansi
+      run: composer install --ignore-platform-reqs
 
     - name: Create .env file
       run: cp .env.example .env
