@@ -23,7 +23,7 @@ jobs:
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.2' # Change this to the version you need
+        php-version: '8.0' # Change this to the version you need
         extensions: mbstring, intl, pdo, pdo_mysql
 
     - name: Get composer cache directory
@@ -41,14 +41,14 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest --ansi
 
+    - name: Create .env file
+      run: cp .env.example .env
+
     - name: Generate application key
       run: php artisan key:generate
 
-    - name: Create .env file
-      run: |
-        cp .env.example .env
-        php artisan config:cache
-        php artisan config:clear
+    - name: Configure application
+      run: php artisan config:cache
 
     - name: Run migrations
       env:
