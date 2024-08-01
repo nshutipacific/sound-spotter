@@ -36,7 +36,8 @@ jobs:
       with:
         path: ${{ steps.composer-cache.outputs.dir }}
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-        restore-keys: ${{ runner.os }}-composer-
+        restore-keys: |
+          ${{ runner.os }}-composer-
 
     - name: Install dependencies
       run: composer install --ignore-platform-reqs
@@ -49,6 +50,12 @@ jobs:
 
     - name: Configure application
       run: php artisan config:cache
+
+    - name: Wait for MySQL to be ready
+      run: |
+        wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh
+        chmod +x wait-for-it.sh
+        ./wait-for-it.sh 127.0.0.1:3306 --timeout=60 --strict -- echo "MySQL is up and running"
 
     - name: Run migrations
       env:
@@ -67,3 +74,4 @@ jobs:
         DB_PASSWORD: root
         DB_HOST: 127.0.0.1
       run: vendor/bin/phpunit
+
